@@ -1,0 +1,28 @@
+{
+  "name": "custom-song-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personalised song landing page with order form, Razorpay checkout and MongoDB admin dashboard",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed:admin": "node scripts/seed-admin.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^18.0.10",
+    "express": "^4.22.3",
+    "express-rate-limit": "^8.7.5",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.13.0",
+    "multer": "^2.5.0",
+    "razorpay": "^2.9.8"
+  },
+  "optionalDependencies": {
+    "mongodb-memory-server": "^11.4.0"
+  }
+}

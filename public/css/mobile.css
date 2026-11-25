@@ -1,0 +1,201 @@
+/* =====================================================================
+   Mobile optimisation (loaded last). Phone-first fixes for ≤ 900px / ≤ 520px.
+   ===================================================================== */
+html, body { overflow-x: clip; }
+body { -webkit-tap-highlight-color: transparent; text-rendering: optimizeLegibility; }
+button, a, .chip, .occ { touch-action: manipulation; }
+.story .eyebrow { color: var(--accent); }
+
+/* Sticky bottom bar: hidden until the hero button scrolls away (toggled in app.js) */
+.sticky-cta { transform: translateY(110%); transition: transform 0.3s ease; }
+.sticky-cta.show { transform: none; }
+.short-note { display: none; }
+.wm { flex-shrink: 0; } /* chat bubbles keep full height; older ones scroll off the top like real WhatsApp */
+
+@media (max-width: 900px) {
+  /* ---------- Hero: headline → phones → name box → price ---------- */
+  .hero { padding: 18px 0 10px; }
+  .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .hero-copy { display: contents; }
+  .warning-pill { order: 1; align-self: flex-start; margin-bottom: 12px; }
+  .hero-copy h1 { order: 2; margin-bottom: 6px; }
+  .hero-copy .lead { order: 3; margin-bottom: 0; }
+  .hero-media { order: 4; margin: 18px 0 30px; }
+  .name-try { order: 5; margin-top: 0; }
+  .name-row { order: 6; }
+  .lyric-preview { order: 7; }
+  .price-row { order: 8; margin-top: 14px; }
+  .urgent { order: 9; }
+  .trust-row { order: 10; }
+}
+
+@media (max-width: 520px) {
+  body { padding-bottom: 84px; }
+  .wrap { width: calc(100% - 28px); }
+  .narrow { width: calc(100% - 28px); }
+  .announce { font-size: 12.5px; padding: 7px 10px; }
+  .header-inner { height: 58px; }
+  .logo-mark { width: 34px; height: 34px; }
+  .logo-text { font-size: 22px; }
+  .site-header .btn-sm { padding: 8px 12px; font-size: 13px; }
+
+  h1 { font-size: 29px; letter-spacing: -0.6px; }
+  h2 { font-size: 25px; }
+  .big-h { font-size: 30px; letter-spacing: -1px; }
+  .sub { font-size: 15.5px; margin-bottom: 20px; }
+  .section { padding: 44px 0; }
+  .eyebrow { font-size: 12px; }
+
+  /* Hero */
+  .warning-pill { font-size: 13px; padding: 6px 12px; }
+  .lead { font-size: 15.5px; }
+  .name-row input { font-size: 16px; padding: 13px 14px; }
+  .name-row .btn { width: 100%; }
+  .price-new { font-size: 30px; }
+  .trust-row { gap: 6px 14px; font-size: 13px; }
+
+  .hero-phones { min-height: 470px; max-width: 360px; }
+  .hp-front { width: 232px; height: 462px; right: 4px; }
+  .hp-back { width: 170px; height: 330px; left: 2px; top: 66px; }
+  .hp-pill { top: 22px; font-size: 11.5px; padding: 6px 10px; }
+  .hp-for { left: 20px; }
+  .hp-sound { right: 20px; }
+  .hp-np { left: 20px; right: 20px; top: 68px; padding: 7px 10px; }
+  .hp-np-ic { width: 30px; height: 30px; }
+  .hp-np b { font-size: 14px; }
+  .hp-chip { top: 140px; right: -2px; font-size: 11px; padding: 6px 9px; }
+  .hp-bottom { left: 20px; right: 20px; bottom: 24px; }
+  .hp-bottom p { font-size: 15.5px; margin: 4px 0 10px; }
+  .hp-tag { left: 0; top: -4px; padding: 7px 11px; border-radius: 12px; }
+  .hp-tag small { font-size: 11px; }
+  .hp-tag b { font-size: 13px; }
+  .hp-review { display: none !important; } /* keeps the lyric readable on small screens */
+  .hp-dots { right: 50%; transform: translateX(50%); bottom: -22px; }
+
+  /* Marquee strip */
+  .marquee { margin: 6px 0; padding: 9px 0; font-size: 13px; }
+
+  /* Samples */
+  .sample { flex-basis: 220px; }
+
+  /* Offer card */
+  .offer-card { padding: 28px 18px; border-radius: 22px; }
+  .price-new.big { font-size: 40px; }
+  .offer-card .btn-lg { width: 100%; font-size: 17px; padding: 16px 18px; }
+  .pay-badges span { font-size: 11px; padding: 5px 9px; }
+
+  /* Perks: 3 compact columns instead of 3 tall cards */
+  .perks { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+  .perk { padding: 14px 6px; border-radius: 14px; }
+  .perk b { font-size: 12.5px; line-height: 1.25; }
+  .perk span { font-size: 11.5px; }
+  .perk-ic { width: 38px; height: 38px; border-radius: 11px; }
+  .perk-ic .ico { width: 19px; height: 19px; }
+
+  /* How it works: number next to title, tighter cards */
+  .steps { gap: 10px; margin: 18px 0 22px; }
+  .step { padding: 16px; display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; align-items: center; }
+  .step-no { width: 40px; height: 40px; margin: 0; font-size: 18px; }
+  .step h3 { margin: 0; font-size: 16.5px; }
+  .step p, .step .tags { grid-column: 1 / -1; }
+  .step p { margin: 10px 0 8px; font-size: 14.5px; }
+  .step .tags span { font-size: 11px; }
+  .center .btn-lg, .split .btn-lg { width: 100%; }
+
+  /* Name & story */
+  .split { gap: 24px; }
+  .lyric-sheet { padding: 18px; font-size: 14px; transform: rotate(-1deg); }
+  .lyric-sheet::after { right: -6px; }
+  .checks { font-size: 14.5px; }
+
+  /* Occasions */
+  .occasions { gap: 10px; }
+  .occ { padding: 13px; gap: 2px; }
+  .occ-ic { width: 40px; height: 40px; border-radius: 12px; margin-bottom: 4px; }
+  .occ-ic .ico { width: 20px; height: 20px; }
+  .occ b { font-size: 14.5px; }
+  .occ small { font-size: 12px; line-height: 1.3; }
+
+  /* Sliding rows */
+  .marquee-row { padding: 8px 0 16px; -webkit-mask-image: none; mask-image: none; }
+  .mq-set { gap: 14px; padding-right: 14px; }
+  .rv-card { width: 268px; padding: 18px; border-radius: 18px; }
+  .rv-card p { font-size: 14.5px; }
+  .rx-card { width: 200px; border-radius: 18px; }
+  .rx-card figcaption { font-size: 13px; padding: 10px 12px; }
+  .phones-row { padding: 10px 0 24px; }
+  .phones-row .mq-set { gap: 16px; padding-right: 16px; }
+  .wa-phone { width: 228px; height: 466px; border-width: 7px; border-radius: 34px; }
+  .wa-chat { font-size: 12px; }
+
+  /* Comparison table fits the screen -no sideways scrolling */
+  .table-wrap { overflow: visible; margin: 18px 0 20px; }
+  .compare { min-width: 0; table-layout: fixed; border-radius: 16px; }
+  .compare th { font-size: 9.5px; letter-spacing: 0.4px; padding: 12px 2px; }
+  .compare th:first-child, .compare td:first-child { width: 34%; }
+  .compare td { padding: 12px 2px; font-size: 11px; }
+  .compare td:first-child { font-size: 12.5px; line-height: 1.25; padding-left: 10px; }
+  .compare .yes { width: 26px; height: 26px; }
+  .compare .yes .ico { width: 14px; height: 14px; }
+  .compare .no .ico { width: 15px; height: 15px; }
+
+  /* Gift banner */
+  .gift-banner { padding: 26px 20px; border-radius: 22px; gap: 18px; }
+  .gift-cta { width: 100%; }
+  .gift-cta .btn { width: 100%; }
+
+  /* Story + why */
+  .story p { font-size: 16px; }
+  .story blockquote { font-size: 20px; padding: 16px 18px; }
+  .why { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .why div { padding: 16px 14px; gap: 8px; }
+  .why b { font-size: 13.5px; line-height: 1.3; }
+  .why-ic { width: 40px; height: 40px; }
+  .stats-line { font-size: 19px; }
+
+  /* Deliveries */
+  .mini-stats { gap: 8px; }
+  .mini-stats div { padding: 12px 6px; }
+  .mini-stats b { font-size: 18px; }
+  .mini-stats span { font-size: 12px; }
+
+  /* FAQ */
+  .faq summary { padding: 15px 44px 15px 16px; font-size: 14.5px; }
+  .faq details p { padding: 0 16px 15px; font-size: 14px; }
+
+  /* Footer */
+  .site-footer { padding: 34px 0 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .footer-grid > div:first-child, .footer-grid > div:last-child { grid-column: 1 / -1; }
+
+  /* Sticky bar */
+  .sticky-cta { padding: 9px 14px calc(9px + env(safe-area-inset-bottom)); }
+  .sticky-cta b { font-size: 20px; }
+  .sticky-cta .btn { padding: 13px 18px; font-size: 15px; }
+
+  /* Checkout sheet */
+  .modal-top { padding: 14px 16px 0; }
+  .modal-badge { width: 38px; height: 38px; border-radius: 12px; }
+  .modal-titles h3 { font-size: 18px; }
+  .modal-close { width: 34px; height: 34px; }
+  .progress { margin: 12px -16px 0; }
+  .co-head { margin-bottom: 12px; }
+  .co-ic { width: 36px; height: 36px; }
+  .chip { padding: 8px 12px; font-size: 13.5px; }
+  .modal-foot { padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); }
+  .btn-pay { padding: 14px 14px; font-size: 15.5px; }
+  .foot-price b { font-size: 20px; }
+  .foot-note { font-size: 11.5px; margin-top: 6px; }
+  .long-note { display: none; }
+  .short-note { display: inline; }
+}
+
+@media (max-width: 360px) {
+  h1 { font-size: 26px; }
+  .big-h { font-size: 27px; }
+  .hero-phones { min-height: 430px; }
+  .hp-front { width: 212px; height: 422px; }
+  .hp-back { width: 150px; height: 290px; }
+  .compare td:first-child { font-size: 11.5px; }
+  .perk b { font-size: 11.5px; }
+}

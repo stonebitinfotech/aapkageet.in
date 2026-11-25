@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Personalised Song Gift | 30 Min Mein Aapka Gaana</title>
+  <meta name="description" content="Unka naam. Aapki yaadein. Ek asli gaana -30 minute mein WhatsApp pe. The most emotional personalised gift." />
+  <meta name="theme-color" content="#fff5f8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/v3.css" />
+  <link rel="stylesheet" href="/css/mobile.css" />
+  <link rel="stylesheet" href="/css/v4.css" />
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="announce" id="announce" hidden></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="/" class="logo" id="logo">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b2c5a"/><stop offset=".55" stop-color="#e0406b"/><stop offset="1" stop-color="#f08a3d"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#lg)"/><path d="M20 30.5s-9-5.3-9-11.2A4.8 4.8 0 0 1 20 16.6a4.8 4.8 0 0 1 9 2.7c0 5.9-9 11.2-9 11.2Z" fill="#fff" opacity=".95"/><path d="M22.5 11v9.2a2.3 2.3 0 1 1-1.4-2.1V11.6l4.4-1.2v1.9Z" fill="#8b2c5a"/></svg>
+        <span class="logo-text" data-bind="brandName">Aapka Geet</span>
+      </a>
+      <button class="btn btn-sm" data-open-form>Create song 🎵</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy hero-v4">
+          <div class="warn"><span class="warn-badge"><span data-icon="zap"></span>WARNING</span><span>Tissues ready rakho. Rona <u>pakka</u> hai.</span></div>
+          <h1 class="hero-h">
+            <span class="gt">Dekho unhe</span>
+            <span class="hl">khushi se rote</span>
+            <span class="gt2">jab gaana le</span>
+            <span>unka naam.</span>
+          </h1>
+          <p class="hero-stats"><span class="stars">★★★★★</span> <b id="statsTrust">Songs made with love</b></p>
+          <p class="hero-sub">Unka naam. Aapki yaadein. Ek asli gaana -<b><span data-bind="deliveryPromise">30 min</span> mein WhatsApp pe.</b></p>
+
+          <div class="cta-card">
+            <label class="name-box"><span class="nb-ic" data-icon="heart"></span><input id="heroName" class="js-name-input" type="text" maxlength="40" placeholder="Unka naam likho…" autocomplete="off" aria-label="Their name" /></label>
+            <button type="button" class="btn-yellow" data-open-form><span>Create their song <i>→</i></span><small>Bas 1-minute ka form</small></button>
+            <p class="order-by"><span data-icon="zap"></span> Order now &amp; get it by <b class="js-eta">—</b> on WhatsApp</p>
+            <div class="price-row center">
+              <span class="price-old" data-bind="comparePriceFmt">₹1,499</span>
+              <span class="price-new plum" data-bind="priceFmt">₹599</span>
+              <span class="save-badge" data-bind="saveText">SAVE 60% TODAY</span>
+            </div>
+          </div>
+
+          <div class="trust-pills">
+            <a id="igTrust" class="pill" target="_blank" rel="noopener" hidden></a>
+            <span class="pill"><span class="pill-ic" data-icon="lock"></span>Secure payment</span>
+          </div>
+          <p class="lyric-preview" hidden><em id="lyricLine"></em></p>
+        </div>
+
+        <div class="hero-media" id="heroMedia">
+          <!-- Default: animated player mockup (replaced by hero video/image set in dashboard) -->
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="np-label">🎧 Now playing</div>
+            <div class="album-art"><span>♥</span></div>
+            <div class="np-title"><span id="mockName">Unka naam</span> ke liye ❤️</div>
+            <div class="np-sub">Personalised song · <span data-bind="brandName">Aapka Geet</span></div>
+            <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="np-bar"><span></span></div>
+            <div class="np-times"><span>0:42</span><span>3:15</span></div>
+            <div class="np-lyric">"<span id="mockLyric">Unka naam</span>, tere naam se hi… dil ki dhadkan chalti hai"</div>
+            <div class="np-delivered">✓ Delivered on WhatsApp</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>💯 100% Personalised -Your Words, Their Name</span><span>⚡ Delivered on WhatsApp in <b data-bind="deliveryPromise">30 min</b></span><span>🎁 The Most Memorable Gift</span><span>🌏 Hindi, English &amp; 15+ Languages</span><span>💍 Proposals, Birthdays &amp; More</span>
+        <span>💯 100% Personalised -Your Words, Their Name</span><span>⚡ Delivered on WhatsApp in <b data-bind="deliveryPromise">30 min</b></span><span>🎁 The Most Memorable Gift</span><span>🌏 Hindi, English &amp; 15+ Languages</span><span>💍 Proposals, Birthdays &amp; More</span>
+      </div>
+    </div>
+
+    <!-- ============ SAMPLE SONGS + SURPRISE THEM NOW ============ -->
+    <section class="section duo">
+      <div class="wrap duo-grid" id="duoGrid">
+        <div class="duo-left" id="samplesSection" hidden>
+          <p class="duo-eyebrow"><span data-icon="headphones"></span><b>Sample songs</b> · tap to listen</p>
+          <div class="sm-row" id="samples"></div>
+          <p class="swipe-note">← swipe → · <span data-icon="sparkles"></span> Originally created by <b data-bind="brandName">Aapka Geet</b></p>
+        </div>
+
+        <div class="duo-right">
+          <h2 class="duo-h">Surprise them <span class="grad-text">now</span> <span class="duo-gift" data-icon="gift"></span></h2>
+          <p class="duo-sub">Chocolates bhool jaayenge. <b>Ye gaana nahi.</b></p>
+          <label class="name-box"><span class="nb-ic" data-icon="heart"></span><input id="surpriseName" class="js-name-input" type="text" maxlength="40" placeholder="Unka naam likho…" autocomplete="off" aria-label="Their name" /></label>
+          <button type="button" class="btn-yellow" data-open-form><span>Create their song <i>→</i></span><small>Bas 1-minute ka form</small></button>
+          <p class="order-by"><span data-icon="zap"></span> Order now &amp; get it by <b class="js-eta">—</b> on WhatsApp</p>
+          <div class="price-row center">
+            <span class="price-new plum" data-bind="priceFmt">₹599</span>
+            <span class="price-old" data-bind="comparePriceFmt">₹1,499</span>
+            <span class="save-badge" data-bind="offText">60% OFF</span>
+          </div>
+          <div class="feat-grid">
+            <div class="feat"><span class="feat-ic" data-icon="mic"></span><b>Their name</b><small>sung in the song</small></div>
+            <div class="feat"><span class="feat-ic" data-icon="pen"></span><b>Your story</b><small>in the lyrics</small></div>
+            <div class="feat"><span class="feat-ic" data-icon="zap"></span><b data-bind="deliveryPromise">30 min</b><small>on WhatsApp</small></div>
+            <div class="feat"><span class="feat-ic" data-icon="music"></span><b>Full song</b><small>3–5 min long</small></div>
+          </div>
+          <p class="green-note">Ek dinner se bhi sasta. Yaad hamesha ke liye.</p>
+          <p class="duo-proof"><span class="stars">★★★★★</span> <b id="statsDuo">Pyaar se banaye gaye gaane</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section alt">
+      <div class="wrap">
+        <p class="eyebrow">How it works</p>
+        <h2>3 simple steps. <span data-bind="deliveryPromise">30 min</span>. One unforgettable gift.</h2>
+        <div class="steps">
+          <div class="step"><div class="step-no">1</div><h3>Tell us who it's for</h3><p>Person aur occasion choose karo -birthday, anniversary, proposal ya bas aise hi.</p></div>
+          <div class="step"><div class="step-no">2</div><h3>Share your story</h3><p>Naam, nickname, kaise mile, yaadein, inside jokes. Sirf 1 minute lagta hai.</p>
+            <div class="tags"><span>Their name</span><span>Nickname</span><span>How you met</span><span>Memories</span><span>Inside jokes</span></div></div>
+          <div class="step"><div class="step-no">3</div><h3>Pick the vibe &amp; relax</h3><p>Language, voice aur style choose karo. Gaana WhatsApp &amp; email pe aa jayega.</p>
+            <div class="tags"><span>17+ languages</span><span>Male / Female voice</span><span>11+ music styles</span></div></div>
+        </div>
+        <div class="center"><button class="btn btn-lg" data-open-form>Create Their Song</button></div>
+      </div>
+    </section>
+
+    <!-- ============ NAME & STORY ============ -->
+    <section class="section">
+      <div class="wrap split">
+        <div class="split-media" id="storyMedia">
+          <div class="lyric-sheet">
+            <div class="ls-head"><span>🎵</span><div><b><span class="js-name">Unka naam</span> ke liye</b><small>Romantic · Hindi · Female voice</small></div></div>
+            <p class="ls-tag">[Verse 1]</p>
+            <p>College ki wo pehli baarish, tu bheegi thi aur main khada…</p>
+            <p>Canteen ki chai pe hasna tera, aaj bhi dil mein hai pada</p>
+            <p class="ls-tag">[Chorus]</p>
+            <p><mark class="js-name">Unka naam</mark>, <mark class="js-name">Unka naam</mark>… tere naam se hi subah hoti hai</p>
+            <p>Har yaad teri, har baat teri, is gaane mein hi soti hai ❤️</p>
+            <div class="ls-foot">✍️ Written from <b>your</b> memories</div>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow">🎵 Personalised Song Gift</p>
+          <h2>A song with his/her <span class="grad-text">name &amp; story</span> in it</h2>
+          <p class="sub">Ek quick form mein unka naam, kuch yaadein aur language batao. Hum us kahani ko ek asli, studio-quality gaane mein badal dete hain -aur seedha aapke WhatsApp pe bhej dete hain.</p>
+          <ul class="checks">
+            <li>✓ Ready in <span data-bind="deliveryPromise">30 min</span></li>
+            <li>✓ 24 × 7 delivery -even at 3 AM</li>
+            <li>✓ 17+ languages · Male / Female voice</li>
+            <li>✓ MP3 yours forever</li>
+          </ul>
+          <button class="btn btn-lg" data-open-form>Create Their Song →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERFECT FOR (photo cards, editable in dashboard) ============ -->
+    <section class="section alt">
+      <div class="wrap">
+        <h2 class="big-h center occ-title">One song. <span class="grad-text">Every moment that matters.</span></h2>
+        <div class="occ-grid" id="occGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ REACTIONS (review cards, sliding) ============ -->
+    <section class="section" id="reviewsSection" hidden>
+      <div class="wrap center">
+        <p class="eyebrow center-eyebrow">Reactions</p>
+        <h2 class="big-h">The reactions <span class="grad-text">say more</span><br />than we ever could</h2>
+        <p class="sub">What happens when someone hears their own name in a song.</p>
+      </div>
+      <div class="marquee-row" id="reviewsRow"></div>
+    </section>
+
+    <!-- ============ REACTION PHOTOS (sliding) ============ -->
+    <section class="section" id="reactionsSection" hidden>
+      <div class="wrap center">
+        <p class="eyebrow center-eyebrow">Happy tears</p>
+        <h2 class="big-h">Real moments. <span class="grad-text">Real tears.</span></h2>
+        <p class="sub">Jab gaana unka naam leta hai… ye hota hai.</p>
+      </div>
+      <div class="marquee-row reverse" id="reactions"></div>
+    </section>
+
+    <!-- ============ COMPARISON ============ -->
+    <section class="section alt">
+      <div class="wrap">
+        <div class="center">
+          <p class="eyebrow center-eyebrow">Be honest</p>
+          <h2 class="big-h">Unke paas already 10 perfumes hain.<br /><span class="grad-text">Gaana kisi ne nahi diya.</span></h2>
+          <p class="sub narrow-sub">Baaki gifts pe milta hai ek polite "thank you". Is gift pe milte hain khushi ke aansu -kyunki ye aapki yaadon se bana hai, kisi shelf se nahi uthaya.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="compare">
+            <thead><tr><th></th><th class="hl">Their song</th><th>Flowers</th><th>Cake</th><th>Perfume</th></tr></thead>
+            <tbody>
+              <tr><td>Has their name in it</td><td class="hl"><span class="yes" data-icon="check"></span></td><td><span class="no" data-icon="x"></span></td><td>Sort of</td><td><span class="no" data-icon="x"></span></td></tr>
+              <tr><td>Built from your memories</td><td class="hl"><span class="yes" data-icon="check"></span></td><td><span class="no" data-icon="x"></span></td><td><span class="no" data-icon="x"></span></td><td><span class="no" data-icon="x"></span></td></tr>
+              <tr><td>Lasts forever</td><td class="hl"><span class="yes" data-icon="check"></span></td><td><span class="no" data-icon="x"></span></td><td><span class="no" data-icon="x"></span></td><td>Few months</td></tr>
+              <tr><td>Ready in <span data-bind="deliveryPromise">30 min</span></td><td class="hl"><span class="yes" data-icon="check"></span></td><td>Sort of</td><td>Sort of</td><td><span class="no" data-icon="x"></span></td></tr>
+              <tr><td>They'll replay it for years</td><td class="hl"><span class="yes" data-icon="check"></span></td><td><span class="no" data-icon="x"></span></td><td><span class="no" data-icon="x"></span></td><td><span class="no" data-icon="x"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="gift-banner">
+          <div class="gift-copy">
+            <p class="eyebrow gold">The gift that actually stays</p>
+            <h3>Unka naam. Aapki yaadein.<br /><span>Ek gaana jo wo saalon tak sunenge.</span></h3>
+            <p>Flowers murjha jaate hain, cake khatam ho jaata hai -ye gaana hamesha unke phone mein, unke dil mein rahega.</p>
+          </div>
+          <div class="gift-cta">
+            <button class="btn btn-light btn-lg" data-open-form>Create Their Song →</button>
+            <p><span data-bind="priceFmt">₹599</span> · Ready in <span data-bind="deliveryPromise">30 min</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STORY ============ -->
+    <section class="section">
+      <div class="wrap narrow story">
+        <p class="eyebrow">A gift they'll never forget</p>
+        <h2>Ek aur ordinary gift lene se pehle… ye padho.</h2>
+        <p>Flowers murjha jaate hain. Cake khatam ho jaata hai. Perfume aur watch drawer mein chale jaate hain.</p>
+        <p>Lekin jab koi apna naam ek gaane mein sunta hai -unki apni kahani, unki yaadein, wo inside joke jo sirf aap dono samajhte ho -tab unhe ek hi baat feel hoti hai:</p>
+        <blockquote>"Ye kisi store se nahi khareeda. Kisi ne ye <em>mere liye banaya</em> hai."</blockquote>
+        <p>Sawaal simple hai… kya wo ise saalon tak replay karenge? <b>Pura chance hai ki haan.</b></p>
+      </div>
+    </section>
+
+    <!-- ============ WHY ============ -->
+    <section class="section alt">
+      <div class="wrap">
+        <h2>Why people love personalised songs</h2>
+        <div class="why">
+          <div><span class="why-ic" data-icon="book"></span><b>Created around your unique story</b></div>
+          <div><span class="why-ic" data-icon="heart"></span><b>Their name inside the lyrics</b></div>
+          <div><span class="why-ic" data-icon="mic"></span><b>Professional music &amp; vocals</b></div>
+          <div><span class="why-ic" data-icon="phone"></span><b>Delivered straight to your phone</b></div>
+        </div>
+        <p class="stats-line" id="statsLine" hidden></p>
+      </div>
+    </section>
+
+    <!-- ============ REAL DELIVERIES (WhatsApp phones, sliding) ============ -->
+    <section class="section deliveries">
+      <div class="wrap center">
+        <p class="eyebrow center-eyebrow gold">Real deliveries</p>
+        <h2 class="big-h" id="waTitle">Straight to their WhatsApp</h2>
+        <p class="sub" id="waSub">Names hidden for privacy ❤️</p>
+      </div>
+      <div class="marquee-row phones-row" id="waRow"></div>
+      <div class="wrap">
+        <div class="mini-stats wide">
+          <div><b data-bind="deliveryPromise">30 min</b><span>Delivery</span></div>
+          <div><b>24×7</b><span>Even at 3 AM</span></div>
+          <div><b>MP3</b><span>Yours forever</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section alt" id="faqSection">
+      <div class="wrap narrow">
+        <p class="eyebrow">💡 FAQs</p>
+        <h2>Questions? We've got answers.</h2>
+        <div class="faq" id="faq"></div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="section final-cta">
+      <div class="wrap center">
+        <h2>Moment nikal jaane ka wait mat karo ⏳</h2>
+        <p class="sub">Unka naam. Aapki yaadein. Ek gaana jo wo saalon tak sunenge.</p>
+        <button class="btn btn-lg btn-pulse" data-open-form>Create Their Song -<span data-bind="priceFmt">₹599</span></button>
+        <p class="tiny">🔒 Secure payment · UPI · Cards · Netbanking</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <div class="logo footer-logo" id="footerLogo"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="url(#lg)"/><path d="M20 30.5s-9-5.3-9-11.2A4.8 4.8 0 0 1 20 16.6a4.8 4.8 0 0 1 9 2.7c0 5.9-9 11.2-9 11.2Z" fill="#fff" opacity=".95"/><path d="M22.5 11v9.2a2.3 2.3 0 1 1-1.4-2.1V11.6l4.4-1.2v1.9Z" fill="#8b2c5a"/></svg><span class="logo-text" data-bind="brandName">Aapka Geet</span></div>
+        <p class="muted" data-bind="tagline"></p>
+        <ul class="ft-trust">
+          <li><span data-icon="lock"></span>Secure payments</li>
+          <li><span data-icon="zap"></span>Fast delivery</li>
+          <li><span data-icon="receipt"></span>GST inclusive</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="/policy?p=contact">Contact us</a>
+        <a href="/policy?p=shipping">Shipping &amp; Delivery</a>
+        <a href="/policy?p=refund">Refund Policy</a>
+        <a href="/policy?p=return">Return Policy</a>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <a href="/policy?p=privacy">Privacy Policy</a>
+        <a href="/policy?p=terms">Terms &amp; Conditions</a>
+        <a href="/policy?p=disclaimer">Disclaimer</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <p id="footerContact" class="muted"></p>
+        <p class="ft-24"><span data-icon="clock"></span>Songs delivered 24×7</p>
+      </div>
+    </div>
+
+    <div class="wrap ft-pay">
+      <span class="ft-pay-label"><span data-icon="shield"></span>100% secure payments via</span>
+      <div class="pm-row" aria-label="Accepted payment methods">
+        <span class="pm pm-upi" title="UPI"><svg viewBox="0 0 48 20" aria-hidden="true"><path d="M5 3h3.2l-2.4 9.2c-.3 1.1.2 1.6 1.2 1.6s1.7-.5 2-1.6L11.4 3h3.2l-2.5 9.6C11.5 15 9.7 16.6 6.6 16.6S2.3 15 2.9 12.6Z" fill="#2c2c2c"/><path d="M15.6 3h5.2c2.6 0 3.9 1.3 3.3 3.6-.6 2.4-2.6 3.7-5.2 3.7h-2l-1.6 6h-3.2Zm2.6 4.8h1.7c1 0 1.7-.5 1.9-1.3.2-.8-.2-1.2-1.2-1.2H19Z" fill="#2c2c2c"/><path d="M27.6 3h3.2l-3.6 13.3H24Z" fill="#2c2c2c"/><path d="m35 3 6.5 6.6-10 6.8Z" fill="#f47c20"/><path d="m39.5 3 6.5 6.6-10 6.8Z" fill="#109346"/></svg></span>
+        <span class="pm pm-gpay" title="Google Pay"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M18.4 10.2c0-.6-.1-1.2-.2-1.7H10v3.3h4.7a4 4 0 0 1-1.7 2.6v2.2h2.8c1.6-1.5 2.6-3.7 2.6-6.4Z" fill="#4285f4"/><path d="M10 18.7c2.3 0 4.3-.8 5.8-2.1L13 14.4c-.8.5-1.8.9-3 .9-2.3 0-4.2-1.5-4.9-3.6H2.2v2.2A8.7 8.7 0 0 0 10 18.7Z" fill="#34a853"/><path d="M5.1 11.7a5.2 5.2 0 0 1 0-3.4V6.1H2.2a8.7 8.7 0 0 0 0 7.8Z" fill="#fbbc04"/><path d="M10 4.7c1.3 0 2.5.5 3.4 1.3l2.5-2.5A8.4 8.4 0 0 0 10 1.3a8.7 8.7 0 0 0-7.8 4.8l2.9 2.2C5.8 6.2 7.7 4.7 10 4.7Z" fill="#ea4335"/></svg><b>Pay</b></span>
+        <span class="pm pm-phonepe" title="PhonePe"><i>पे</i><b>PhonePe</b></span>
+        <span class="pm pm-paytm" title="Paytm"><b>pay</b><b>tm</b></span>
+        <span class="pm pm-visa" title="Visa"><b>VISA</b></span>
+        <span class="pm pm-mc" title="Mastercard"><svg viewBox="0 0 32 20" aria-hidden="true"><circle cx="12" cy="10" r="8" fill="#eb001b"/><circle cx="20" cy="10" r="8" fill="#f79e1b"/><path d="M16 3.1a8 8 0 0 1 0 13.8 8 8 0 0 1 0-13.8Z" fill="#ff5f00"/></svg></span>
+        <span class="pm pm-rupay" title="RuPay"><b>Ru</b><b>Pay</b><svg viewBox="0 0 10 12" aria-hidden="true"><path d="m1 1 5 5-5 5Z" fill="#f47c20"/><path d="m4 1 5 5-5 5Z" fill="#109346"/></svg></span>
+        <span class="pm pm-nb" title="Netbanking"><span data-icon="bank"></span><b>Netbanking</b></span>
+      </div>
+    </div>
+
+    <div class="wrap copyright" id="copyright"></div>
+  </footer>
+
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sc-inner">
+      <div class="sc-price">
+        <b data-bind="priceFmt">₹599</b>
+        <span><s data-bind="comparePriceFmt">₹1,499</s><em class="sc-save" data-bind="saveShort">Save 60%</em></span>
+      </div>
+      <button type="button" class="btn-yellow sc-btn" data-open-form><span>Create Their Song <i>→</i></span></button>
+    </div>
+  </div>
+
+  <!-- ============ ORDER POPUP ============ -->
+  <div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <div class="modal-top">
+        <div class="modal-top-row">
+          <span class="modal-badge" data-icon="music"></span>
+          <div class="modal-titles">
+            <h3 id="modalTitle">Create their song</h3>
+            <p class="modal-sub" id="modalSub">1-minute form · phir secure payment</p>
+          </div>
+          <button type="button" class="modal-close" data-close aria-label="Close"><span data-icon="x"></span></button>
+        </div>
+        <div class="progress" title="Form completion"><span id="progressBar"></span></div>
+      </div>
+      <form id="orderForm" novalidate>
+        <div class="modal-scroll" id="formBody"></div>
+        <div class="modal-foot" id="modalFoot">
+          <div class="form-error" id="formError" hidden></div>
+          <div class="foot-row">
+            <div class="foot-price"><span class="price-old" id="footOld"></span><b id="footPrice"></b></div>
+            <button type="submit" class="btn btn-pay" id="payBtn"></button>
+          </div>
+          <p class="foot-note"><span data-icon="lock"></span><span class="long-note">100% secure payment · UPI · GPay · PhonePe · Cards · Netbanking</span><span class="short-note">100% secure · UPI · Cards · Netbanking</span></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

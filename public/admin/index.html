@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="loginView" class="login" hidden>
+    <form id="loginForm" class="login-card">
+      <h1>🎵 Dashboard</h1>
+      <p class="muted">Sign in to manage orders</p>
+      <label>Username<input name="username" autocomplete="username" required /></label>
+      <label>Password
+        <span class="pw-wrap"><input name="password" type="password" autocomplete="current-password" required /><button type="button" class="pw-toggle" id="pwToggle">Show</button></span>
+      </label>
+      <p class="muted small">Add or reset a login with <code>npm run seed:admin -- &lt;id&gt; &lt;password&gt;</code>.</p>
+      <div class="error" id="loginError" hidden></div>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+  </div>
+
+  <!-- App -->
+  <div id="appView" class="app" hidden>
+    <aside class="sidebar">
+      <div class="brand">🎵 <span>Dashboard</span></div>
+      <nav>
+        <button data-tab="orders" class="active">📦 Orders</button>
+        <button data-tab="fields">📝 Form Builder</button>
+        <button data-tab="content">🖼️ Page Content</button>
+        <button data-tab="settings">⚙️ Settings &amp; Policies</button>
+        <button data-tab="account">🔑 Account</button>
+      </nav>
+      <div class="side-foot">
+        <a href="/" target="_blank">↗ View website</a>
+        <div id="payMode" class="pay-mode"></div>
+        <button id="logoutBtn" class="link">Log out</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- ORDERS -->
+      <section data-panel="orders">
+        <div class="page-head">
+          <h2>Orders</h2>
+          <div class="row">
+            <button class="btn" id="refreshBtn">↻ Refresh</button>
+            <button class="btn" id="exportBtn">⬇ Export CSV</button>
+          </div>
+        </div>
+        <div class="stats" id="stats"></div>
+        <div class="filters">
+          <input id="fQ" placeholder="Search order #, name, phone, email…" />
+          <select id="fPayment">
+            <option value="">All payments</option>
+            <option value="paid">Paid</option>
+            <option value="pending">Unpaid / abandoned</option>
+            <option value="failed">Failed</option>
+            <option value="refunded">Refunded</option>
+          </select>
+          <select id="fDelivery">
+            <option value="">All delivery</option>
+            <option value="new">New</option>
+            <option value="in_progress">In progress</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <input id="fFrom" type="date" title="From" />
+          <input id="fTo" type="date" title="To" />
+        </div>
+        <div class="table-card">
+          <table class="tbl">
+            <thead><tr><th>Date</th><th>Order #</th><th>Customer</th><th>WhatsApp</th><th>Song for</th><th>Amount</th><th>Payment</th><th>Delivery</th></tr></thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+        <div class="pager" id="pager"></div>
+      </section>
+
+      <!-- FORM BUILDER -->
+      <section data-panel="fields" hidden>
+        <div class="page-head">
+          <div>
+            <h2>Form Builder</h2>
+            <p class="muted">These fields appear in the one-page "Create their song" checkout. Fields with the same <b>Section</b> name are grouped together. Choice options get matching icons automatically.</p>
+          </div>
+          <button class="btn primary" id="addFieldBtn">+ Add field</button>
+        </div>
+        <div id="fieldsList"></div>
+      </section>
+
+      <!-- CONTENT -->
+      <section data-panel="content" hidden>
+        <div class="page-head">
+          <div>
+            <h2>Page Content</h2>
+            <p class="muted">Images, videos, sample songs, reviews and FAQs on the website. Sections with no items are hidden automatically.</p>
+          </div>
+          <button class="btn primary save-settings">💾 Save changes</button>
+        </div>
+        <div class="card">
+          <h3>📱 Hero phones (top of page)</h3>
+          <p class="muted small">Each slide shows in the big phone and slides automatically; the next slide peeks in the tilted phone. Upload vertical reaction videos (mp4) or photos. Visitors can tap "Sound" to unmute a video.</p>
+          <div id="heroSlidesEditor"></div>
+          <details class="small" style="margin-top:10px"><summary class="muted">Single hero image / video (used only if there are no slides)</summary>
+            <div class="grid2" style="margin-top:10px">
+              <div data-media="heroImage" data-kind="image" data-label="Hero image (or video poster)"></div>
+              <div data-media="heroVideo" data-kind="video" data-label="Hero video"></div>
+            </div>
+          </details>
+        </div>
+        <div class="card">
+          <h3>📖 "A song with their name &amp; story" section</h3>
+          <div data-media="storyImage" data-kind="image" data-label="Image (optional -a lyric-sheet mockup is shown if empty)"></div>
+        </div>
+        <div class="card"><h3>🎧 Sample songs <span class="muted small">-"Asli gaane, tap karke suno"</span></h3><div id="samplesEditor"></div></div>
+        <div class="card"><h3>💝 "One song. Every moment that matters." cards</h3><div id="occasionsEditor"></div></div>
+        <div class="card"><h3>😭 Reaction photos</h3><div id="reactionsEditor"></div></div>
+        <div class="card"><h3>⭐ Customer reviews</h3><p class="muted small">Add only genuine reviews from real customers.</p><div id="testimonialsEditor"></div></div>
+        <div class="card"><h3>💬 WhatsApp delivery screenshots</h3><p class="muted small">Shown inside sliding phone frames. Blur customer names/numbers and get permission before uploading. If empty, sample chat mockups are shown.</p><div id="deliveryShotsEditor"></div></div>
+        <div class="card"><h3>❓ FAQs</h3><div id="faqsEditor"></div></div>
+        <div class="sticky-save"><button class="btn primary save-settings">💾 Save changes</button></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section data-panel="settings" hidden>
+        <div class="page-head">
+          <h2>Settings &amp; Policies</h2>
+          <button class="btn primary save-settings">💾 Save changes</button>
+        </div>
+        <form class="card" id="payForm" autocomplete="off">
+          <h3>💳 Payment gateway (Razorpay)</h3>
+          <div class="pay-status" id="payStatus"></div>
+          <p class="muted small">Get keys from <b>Razorpay Dashboard → Account &amp; Settings → API Keys</b>. Use <code>rzp_test_…</code> keys to try it out, then <code>rzp_live_…</code> for real payments.
+            Keys are checked with Razorpay before saving, stored encrypted, and override the keys in <code>.env</code>.</p>
+          <div class="grid2">
+            <label>Key ID<input name="keyId" placeholder="rzp_live_XXXXXXXXXXXX" spellcheck="false" maxlength="40" required /></label>
+            <label>Key Secret<input name="keySecret" type="password" autocomplete="new-password" spellcheck="false" maxlength="100" /><span class="muted small" id="secretHint"></span></label>
+          </div>
+          <label>Webhook secret (optional, recommended)<input name="webhookSecret" type="password" autocomplete="new-password" spellcheck="false" maxlength="200" /><span class="muted small" id="webhookHint"></span></label>
+          <p class="muted small">In <b>Razorpay → Webhooks</b>, add URL <code id="webhookUrl"></code> with events <code>payment.captured</code>, <code>payment.failed</code> and <code>order.paid</code>, and use the same secret here. This marks orders paid even if the buyer closes the page.</p>
+          <label class="check"><input type="checkbox" id="payShow" /> Show keys</label>
+          <div class="error" id="payError" hidden></div>
+          <div class="row">
+            <button class="btn primary" type="submit" id="paySave">💾 Check &amp; save payment keys</button>
+            <button class="btn" type="button" id="payRemove" hidden>Remove dashboard keys</button>
+          </div>
+        </form>
+        <div class="card">
+          <h3>Website theme</h3>
+          <label>Colour theme<select data-s="theme"><option value="light">☀️ Light (white &amp; pink)</option><option value="dark">🌙 Dark</option></select></label>
+        </div>
+        <div class="card">
+          <h3>Pricing</h3>
+          <div class="grid3">
+            <label>Price (₹) -charged at checkout<input data-s="price" type="number" min="1" step="1" /></label>
+            <label>Compare-at price (₹) -shown struck through<input data-s="comparePrice" type="number" min="0" step="1" /></label>
+            <label>Delivery promise<input data-s="deliveryPromise" placeholder="30 min" /></label>
+          </div>
+          <label>Product name (shown at checkout)<input data-s="productName" /></label>
+        </div>
+        <div class="card">
+          <h3>Brand</h3>
+          <div class="grid2">
+            <label>Brand name<input data-s="brandName" /></label>
+            <label>Legal business name (footer &amp; policies)<input data-s="businessName" /></label>
+          </div>
+          <label>Tagline<input data-s="tagline" /></label>
+          <label>Announcement bar (empty = hidden)<input data-s="announcement" /></label>
+          <label>Stats line (empty = hidden), e.g. "2,000+ stories turned into songs"<input data-s="statsText" /></label>
+          <div data-media="logo" data-kind="image" data-label="Logo (optional -brand name text is used if empty)"></div>
+        </div>
+        <div class="card">
+          <h3>Contact &amp; social</h3>
+          <div class="grid2">
+            <label>Support email<input data-s="supportEmail" type="email" /></label>
+            <label>WhatsApp number (with country code, e.g. 919876543210)<input data-s="whatsappNumber" /></label>
+            <label>Support hours<input data-s="supportHours" /></label>
+            <label>Instagram handle<input data-s="instagramHandle" placeholder="yourbrand" /></label>
+            <label>Instagram followers text (e.g. 13K+)<input data-s="instagramFollowers" /></label>
+            <label>Instagram URL<input data-s="instagramUrl" placeholder="https://instagram.com/…" /></label>
+            <label>Registered business address (shown on policy pages)<input data-s="address" /></label>
+            <label>City for legal jurisdiction (e.g. Ahmedabad, Gujarat)<input data-s="jurisdiction" /></label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Policy pages</h3>
+          <p class="muted small">Razorpay requires these pages before activating your account. Placeholders are filled automatically:
+            <code>{{brand}}</code> <code>{{business}}</code> <code>{{email}}</code> <code>{{whatsapp}}</code> <code>{{address}}</code> <code>{{jurisdiction}}</code> <code>{{delivery}}</code> <code>{{hours}}</code> <code>{{website}}</code> <code>{{updated}}</code>.
+            These are general templates -get them reviewed for your business.</p>
+          <label>Privacy Policy<textarea data-s="policies.privacy" rows="8"></textarea></label>
+          <label>Terms &amp; Conditions<textarea data-s="policies.terms" rows="8"></textarea></label>
+          <label>Refund &amp; Cancellation<textarea data-s="policies.refund" rows="8"></textarea></label>
+          <label>Return Policy<textarea data-s="policies.return" rows="8"></textarea></label>
+          <label>Shipping &amp; Delivery<textarea data-s="policies.shipping" rows="8"></textarea></label>
+          <label>Disclaimer<textarea data-s="policies.disclaimer" rows="8"></textarea></label>
+          <label>Contact Us<textarea data-s="policies.contact" rows="6"></textarea></label>
+        </div>
+        <div class="sticky-save"><button class="btn primary save-settings">💾 Save changes</button></div>
+      </section>
+
+      <!-- ACCOUNT -->
+      <section data-panel="account" hidden>
+        <div class="page-head"><h2>Account</h2></div>
+        <form class="card" id="pwForm" style="max-width:480px">
+          <h3>Reset password</h3>
+          <p class="muted small">Signed in as <b id="meName"></b>. Changing the password logs you out on all other devices.</p>
+          <label>Current password<input name="currentPassword" type="password" autocomplete="current-password" required /></label>
+          <label>New password (min 8 characters)<input name="newPassword" type="password" autocomplete="new-password" minlength="8" maxlength="200" required /></label>
+          <label>Confirm new password<input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="200" required /></label>
+          <label class="check"><input type="checkbox" id="pwShowAll" /> Show passwords</label>
+          <div class="error" id="pwError" hidden></div>
+          <button class="btn primary" type="submit">Update password</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Order drawer -->
+  <div class="drawer" id="orderDrawer" hidden>
+    <div class="drawer-bg" data-close-drawer></div>
+    <div class="drawer-card" id="orderDetail"></div>
+  </div>
+
+  <!-- Field editor modal -->
+  <div class="drawer" id="fieldModal" hidden>
+    <div class="drawer-bg" data-close-field></div>
+    <form class="drawer-card" id="fieldForm"></form>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

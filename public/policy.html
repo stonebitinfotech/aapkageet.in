@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/v3.css" />
+  <link rel="stylesheet" href="/css/mobile.css" />
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body style="padding-bottom:0">
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="/" class="logo">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b2c5a"/><stop offset=".55" stop-color="#e0406b"/><stop offset="1" stop-color="#f08a3d"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#lg)"/><path d="M20 30.5s-9-5.3-9-11.2A4.8 4.8 0 0 1 20 16.6a4.8 4.8 0 0 1 9 2.7c0 5.9-9 11.2-9 11.2Z" fill="#fff" opacity=".95"/><path d="M22.5 11v9.2a2.3 2.3 0 1 1-1.4-2.1V11.6l4.4-1.2v1.9Z" fill="#8b2c5a"/></svg>
+        <span class="logo-text" id="brand">Home</span>
+      </a>
+      <a class="btn btn-sm" href="/">← Back to site</a>
+    </div>
+  </header>
+  <main class="policy">
+    <div class="wrap narrow">
+      <nav class="policy-nav" id="nav"></nav>
+      <h1 id="title">Policy</h1>
+      <div class="policy-body" id="body">Loading…</div>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var pages = [
+        ['privacy', 'Privacy Policy'], ['terms', 'Terms & Conditions'], ['refund', 'Refund & Cancellation'],
+        ['return', 'Return Policy'], ['shipping', 'Shipping & Delivery'], ['disclaimer', 'Disclaimer'], ['contact', 'Contact Us'],
+      ];
+      var titles = {}; pages.forEach(function (p) { titles[p[0]] = p[1]; });
+      var p = new URLSearchParams(location.search).get('p');
+      if (!titles[p]) p = 'contact';
+      document.getElementById('title').textContent = titles[p];
+      var nav = document.getElementById('nav');
+      pages.forEach(function (x) {
+        var a = document.createElement('a');
+        a.href = '/policy?p=' + x[0]; a.textContent = x[1];
+        if (x[0] === p) a.className = 'on';
+        nav.appendChild(a);
+      });
+
+      fetch('/api/config').then(function (r) { return r.json(); }).then(function (cfg) {
+        var s = cfg.settings;
+        document.title = titles[p] + ' | ' + s.brandName;
+        document.getElementById('brand').textContent = s.brandName;
+        var missing = function (label) { return '[' + label + ' -add in Dashboard → Settings]'; };
+        var tokens = {
+          brand: s.brandName,
+          business: s.businessName || s.brandName,
+          email: s.supportEmail || missing('support email'),
+          whatsapp: s.whatsappNumber || missing('WhatsApp number'),
+          address: s.address || missing('business address'),
+          jurisdiction: s.jurisdiction || missing('city for jurisdiction'),
+          delivery: s.deliveryPromise || '30 minutes',
+          hours: s.supportHours || '',
+          website: location.origin,
+          updated: new Date(s.updatedAt || Date.now()).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+        };
+        var text = ((s.policies && s.policies[p]) || '').replace(/\{\{(\w+)\}\}/g, function (m, k) { return tokens[k] !== undefined ? tokens[k] : m; });
+        document.getElementById('body').textContent = text;
+      });
+    })();
+  </script>
+</body>
+</html>
